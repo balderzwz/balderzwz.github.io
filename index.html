@@ -1,7 +1,15 @@
 ﻿<!doctype html>
 <html>
 <head>
+<meta charset="utf-8">
+<link rel="icon" href="sitelogo.png" type="image/x-icon"/> 
+<title>Scrat_Tel(Homepage) - Official </title>
+<link href="css/firstpage_rightside.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
 <script>
+//百度点击统计
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
@@ -11,9 +19,26 @@ var _hmt = _hmt || [];
 })();
 </script>
 
-<meta charset="utf-8">
-<link rel="icon" href="sitelogo.png" type="image/x-icon"/> 
-<title>Scrat_Tel(Homepage) - Official </title>
+
+<script>
+//首页右侧边栏联系信息
+$(function() {
+	// 悬浮窗口
+	$(".yb_conct").hover(function() {
+		$(".yb_conct").css("right", "5px");
+		$(".yb_bar .yb_ercode").css('height', '200px');
+	}, function() {
+		$(".yb_conct").css("right", "-127px");
+		$(".yb_bar .yb_ercode").css('height', '53px');
+	});
+	// 返回顶部
+	$(".yb_top").click(function() {
+		$("html,body").animate({
+			'scrollTop': '0px'
+		}, 300)
+	});
+});
+</script>
 
 <style>
 body {
@@ -359,6 +384,27 @@ label {
 
 </head>
 <body>
+<!-----
+ *  personal contact begin
+//----->
+<div class="yb_conct">
+  <div class="yb_bar">
+    <ul>
+      <li class="yb_top">Back to top</li>
+      <li class="yb_phone" ><a href="mailto:jasonzhang100@126.com">Jason Cheung</a></li>
+      <li class="yb_QQ">
+<!--      	<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=954502368&amp;site=qq&amp;menu=yes&amp;from=message&amp;isappinstalled=0" title="即刻发送您的需求">在线咨询</a>
+-->
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=343142472&site=qq&menu=yes&from=message&isappinstalled=0" title="Q me">Q me</a>
+      </li>
+      <li class="yb_ercode" style="height:53px;">Scan Wechat <br>
+        <img class="hd_qr" src="pic/weixin.jpg" width="125" alt="关注你附近"> </li>
+    </ul>
+  </div>
+</div>
+<!-----
+ *  personal contact end
+//----->
 
 <h2>Personal Matters</h2>
 
