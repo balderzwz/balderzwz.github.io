@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -39,7 +39,7 @@ $(function() {
 	});
 });
 </script>
-	
+
 <meta charset="utf-8">
 <link rel="icon" href="pic/sitelogo.png" type="image/x-icon"/> 
 <title>Scrat_Tel(Homepage) - Official </title>
@@ -688,8 +688,9 @@ label {
                             <h3><a href="javascript:void(0);">动手类</a></h3>
                             <ul class="clearfix">
                                 <li><a href="javascript:void(0);">绘画</a></li>
+                                <li><a href="https://github.com/balderzwz/shufa/blob/master/index.html" >书法</a></li>
                                 <li><a href="javascript:void(0);">摄影</a></li>
-
+                                
                             </ul>
                         </div>
                         <div class="fore_list">
