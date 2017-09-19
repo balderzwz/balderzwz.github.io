@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -56,7 +56,7 @@ body {
   background: #48b379;
 }
 /*-------
-*  nav begin
+*  left nav begin
 *-----*/
 	.w {
 			width:1200px;
@@ -193,23 +193,27 @@ body {
 			border-bottom:1px solid #d3d3d3;
 		}
 		.cat_subcont .cat_sublist .fore1 .fore_list h3 a {
-			font-size:14px;
+			font-size:16px;
 			color:#00a1ea;
 		}
 		.cat_subcont .cat_sublist .fore1 .fore_list li {
 			float:left;
+			font-size:12px;
+			color:#7d7d7d;
 			padding:20px; // 5px -> 20px
 		}
 		.cat_subcont .cat_sublist .fore1 .fore_list li a {
 			font-size:12px;
-			color:#333;
+		  color:#333;
 		}
 		.cat_subcont .cat_sublist .fore1 .fore_list li a:hover {
-			color:#00a1ea;
+			color:#FF7F00;
+			font-weight:bold;
 			text-decoration:underline;
 		}
+	
 /*-------
-*  nav end
+* left nav end
 *-----*/
   
   
@@ -403,7 +407,7 @@ label {
 <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=343142472&site=qq&menu=yes&from=message&isappinstalled=0" title="Q me">Q me</a>
       </li>
       <li class="yb_ercode" style="height:53px;">Scan Wechat <br>
-        <img class="hd_qr" src="pic/weixin.jpg" width="125" alt="关注你附近"> </li>
+        <img class="hd_qr" src="pic/weixin.png" width="125" alt="关注你附近"> </li>
     </ul>
   </div>
 </div>
@@ -479,7 +483,7 @@ label {
                     </div>
                     <div class="float for8">
                         <ul class="clearfix">
-                            <li>艺术</li>
+                            <li >艺术</li>
       <!---                        <li>领导力</li> -->
                         </ul>
                     </div>
@@ -505,11 +509,11 @@ label {
                         <div class="fore_list">
                             <h3><a href="javascript:void(0);">开源技术</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">JAVA</a></li>
                                 <li><a href="javascript:void(0);">Python</a></li>
                                 <li><a href="javascript:void(0);">Javascript</a></li>
                                 <li><a href="javascript:void(0);">CSS</a></li>
                                 <li><a href="javascript:void(0);">HTML5</a></li>
+
                             </ul>
                         </div>
 			 <div class="fore_list">
@@ -531,22 +535,15 @@ label {
 
                             </ul>
                         </div>
-			<div class="fore_list">
-                            <h3><a href="javascript:void(0);">IOT</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">传感器</a></li>
-                                <li><a href="javascript:void(0);">传输</a></li>
-                                <li><a href="javascript:void(0);">应用层</a></li>
-                                <li><a href="javascript:void(0);">数据分析层</a></li>
 
-
-                            </ul>
-                        </div>
 	               <div class="fore_list">
-                            <h3><a href="javascript:void(0);">BIG DATA & AI</a></h3>
+                            <h3><a href="javascript:void(0);">新趋势</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">技术</a></li>
-                                <li><a href="javascript:void(0);">应用</a></li>
+                                <li>数据模型</li>
+                                <li>机器学习</li>
+                                <li>AR/MR</li>
+                                <li>3D打印</li>
+                                <li>IOT场景</li>
                             </ul>
                         </div>
                     </div>
@@ -603,19 +600,29 @@ label {
                             <h3><a href="javascript:void(0);">人人都需了解的经济学</a></h3>
                             <ul class="clearfix">
                                 <li><a href="javascript:void(0);">国与国关系的影响</a></li>
-                                <li><a href="javascript:void(0);">国与人民关系的影响</a></li>
-
+                                <li><a href="javascript:void(0);">国与实体关系的影响</a></li>
+                                <li><a href="javascript:void(0);">实体与人民关系的影响</a></li>
                             </ul>
                         </div>
-                           <div class="fore_list">
+                    
+                        <div class="fore_list">
+                            <h3><a href="javascript:void(0);">新融合</a></h3>
+                            <ul class="clearfix">
+                                <li><a href="javascript:void(0);">供应链金融(2B)</a></li>
+                                <li><a href="javascript:void(0);">消费金融(2C)</a></li>
+                                <li><a href="javascript:void(0);">数据的力量</a></li>
+                               
+                            </ul>
+                        </div> 
+                                <div class="fore_list">
                             <h3><a href="javascript:void(0);">实战分享</a></h3>
                             <ul class="clearfix">
                                 <li><a href="javascript:void(0);">股市</a></li>
                                 <li><a href="javascript:void(0);">汇市</a></li>
                                 <li><a href="javascript:void(0);">房市</a></li>
-                                <li><a href="javascript:void(0);">金市</a></li>
+                                <li>金市</li>
                             </ul>
-                        </div> 
+                        </div>
                     </div>
                     
                 </div>
@@ -623,11 +630,20 @@ label {
                     <!-- 浮层左边列表 -->
                     <div class="fore1">
                         <div class="fore_list">
-                            <h3><a href="javascript:void(0);">财务控制</a></h3>
+                            <h3><a href="javascript:void(0);">业务知识</a></h3>
                             <ul class="clearfix">
+                                <li><a href="javascript:void(0);">税务知识</a></li>
                                 <li><a href="javascript:void(0);">财务管理</a></li>
                                 <li><a href="javascript:void(0);">内控管理</a></li>
                                 <li><a href="javascript:void(0);">审计</a></li>
+                            </ul>
+                        </div>
+                        <div class="fore_list">
+                            <h3><a href="javascript:void(0);">系统支持</a></h3>
+                            <ul class="clearfix">
+                                <li><a href="javascript:void(0);">系统设计</a></li>
+                                <li><a href="javascript:void(0);">新趋势</a></li>
+                              
                             </ul>
                         </div>
                     </div>
@@ -654,9 +670,9 @@ label {
                     <!-- 浮层左边列表 -->
                     <div class="fore1">
                         <div class="fore_list">
-                            <h3><a href="javascript:void(0);">室内花卉</a></h3>
+                            <h3><a href="javascript:void(0);">花卉乔木</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">知识普及</a></li>
+                                
                                 <li><a href="javascript:void(0);">花卉类</a></li>
                                 <li><a href="javascript:void(0);">乔木类</a></li>
 
@@ -673,8 +689,8 @@ label {
 			<div class="fore_list">
                             <h3><a href="javascript:void(0);">经济动物</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">禽类</a></li>
-                                <li><a href="javascript:void(0);">水产</a></li>
+                                <li>禽类</li>
+                                <li>水产</li>
 
                             </ul>
                         </div>
@@ -687,8 +703,8 @@ label {
                         <div class="fore_list">
                             <h3><a href="javascript:void(0);">动手类</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">绘画</a></li>
-                                <li><a href="https://github.com/balderzwz/shufa/blob/master/index.html" >书法</a></li>
+                                <li>绘画</li>
+                                <li><a href="http://www.jobshelp.cn/shufa/" >书法</a></li>
                                 <li><a href="javascript:void(0);">摄影</a></li>
                                 
                             </ul>
@@ -696,8 +712,8 @@ label {
                         <div class="fore_list">
                             <h3><a href="javascript:void(0);">动嘴类</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">笛子</a></li>
-                                <li><a href="javascript:void(0);">埙</a></li>
+                                <li>笛子</li>
+                                <li>埙</li>
 
                             </ul>
                         </div>
@@ -733,7 +749,7 @@ label {
 			<div class="fore_list">
                             <h3><a href="javascript:void(0);">辅助工具</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">针灸</a></li>
+                                <li>针灸</li>
                                 <li><a href="javascript:void(0);">工具</a></li>
                             </ul>
                         </div>
