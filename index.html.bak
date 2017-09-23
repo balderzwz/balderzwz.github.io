@@ -407,7 +407,7 @@ label {
 <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=343142472&site=qq&menu=yes&from=message&isappinstalled=0" title="Q me">Q me</a>
       </li>
       <li class="yb_ercode" style="height:53px;">Scan Wechat <br>
-        <img class="hd_qr" src="pic/weixin.png" width="125" alt="关注你附近"> </li>
+        <img class="hd_qr" src="pic/weixin.png" width="125" alt="关注微信"> </li>
     </ul>
   </div>
 </div>
@@ -541,7 +541,7 @@ label {
                             <ul class="clearfix">
                                 <li>数据模型</li>
                                 <li>机器学习</li>
-                                <li>AR/MR</li>
+                                <li ><a href="http://www.jobshelp.cn/vrshow/" target="_blank">VR/AR/MR</a></li>
                                 <li>3D打印</li>
                                 <li>IOT场景</li>
                             </ul>
@@ -655,7 +655,7 @@ label {
                         <div class="fore_list">
                             <h3><a href="javascript:void(0);">户外必备</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">单车</a></li>
+                                <li>单车</li>
                                 <li><a href="javascript:void(0);">远足</a></li>
                                 <li><a href="javascript:void(0);">钓鱼</a></li>
                                 <li><a href="javascript:void(0);">自驾</a></li>
@@ -674,15 +674,15 @@ label {
                             <ul class="clearfix">
                                 
                                 <li><a href="javascript:void(0);">花卉类</a></li>
-                                <li><a href="javascript:void(0);">乔木类</a></li>
+                                <li>乔木类</li>
 
                             </ul>
                         </div>
 		       <div class="fore_list">
                             <h3><a href="javascript:void(0);">经济植物</a></h3>
                             <ul class="clearfix">
-                                <li><a href="javascript:void(0);">当期供需分析</a></li>
-                                <li><a href="javascript:void(0);">高价值品类</a></li>
+                                <li>当期供需分析</li>
+                                <li>高价值品类</li>
                             </ul>
                         </div>
 			
@@ -704,7 +704,7 @@ label {
                             <h3><a href="javascript:void(0);">动手类</a></h3>
                             <ul class="clearfix">
                                 <li>绘画</li>
-                                <li><a href="http://www.jobshelp.cn/shufa/" >书法</a></li>
+                                <li><a href="http://www.jobshelp.cn/shufa/" target="_blank">书法</a></li>
                                 <li><a href="javascript:void(0);">摄影</a></li>
                                 
                             </ul>
@@ -763,6 +763,7 @@ label {
                             <h3><a href="javascript:void(0);">小快乐大幸福</a></h3>
                             <ul class="clearfix">
                                 <li><a href="javascript:void(0);">搜藏</a></li>
+				<li><a href="javascript:void(0);">学习</a></li>
                                 <li><a href="javascript:void(0);">体验</a></li>
                                 <li><a href="javascript:void(0);">分享</a></li>
                                 <li><a href="javascript:void(0);">给予</a></li>
