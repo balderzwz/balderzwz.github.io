@@ -11,8 +11,11 @@
  // 防止非站内打开 
     var refurl=document.referrer; 
     if(refurl.indexOf("www.jobshelp.cn")>-1){ 
-        alert("你的来源网址为：【"+document.URL +"/" + document.referrer+"】目前本站与该站已终止合作。"); 
-        location.replace(refurl); 
+        
+        
+	else{
+	alert("你的来源网址为：【"+document.URL +"/" + document.referrer+"】目前本站与该站已终止合作。"); 
+	location.replace(refurl); 
     }     
 </script>
 
