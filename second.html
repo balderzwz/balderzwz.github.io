@@ -9,13 +9,13 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript"> 
  // 防止非站内打开 
-    var refurl=document.referrer; 
+    var refurl=document.URL; 
 	debugger;
     if(refurl.indexOf("www.jobshelp.cn")>-1){ 
         
-        alert("你的来源网址为1：【"+document.URL +"/1" + document.referrer+"】目前本站与该站已终止合作。"); 
+        alert("你的来源网址为1：【"+document.URL + "/1" + document.referrer+"】目前本站与该站已终止合作。"); 
 	else{
-	 alert("你的来源网址为2：【"+document.URL +"/2" + document.referrer+"】目前本站与该站已终止合作。"); 
+	 alert("你的来源网址为2：【"+document.URL + "/2" + document.referrer+"】目前本站与该站已终止合作。"); 
 	location.replace(refurl); 
     }     
 </script>
