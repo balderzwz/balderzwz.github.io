@@ -7,8 +7,12 @@
 <link href="css/firstpage_rightside.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script language="JavaScript">   // 禁止后退
-javascript:window.history.forward(1); 
+<script language="JavaScript"> 
+//防止页面后退
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
 </script> 
 <script>
 //百度点击统计
