@@ -14,3 +14,10 @@ window.location.href  = './second.html'; //
 }
 
 }
+
+
+// ½ûÓÃÓÒ¼ü
+function stop(){ 
+return false; 
+} 
+document.oncontextmenu=stop; 
