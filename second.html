@@ -7,6 +7,15 @@
 <link href="css/firstpage_rightside.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript"> 
+ // 防止非站内打开 
+    var refurl=document.referrer; 
+    if(refurl.indexOf("www.jobshelp.cn")>-1){ 
+        alert("你的来源网址为：【"+document.referrer+"】目前本站与该站已终止合作。"); 
+        location.replace(refurl); 
+    }     
+</script>
+
 <script language="JavaScript"> 
 //防止页面后退
         history.pushState(null, null, document.URL);
