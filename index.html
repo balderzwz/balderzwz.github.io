@@ -48,24 +48,17 @@ background-image:url('./pic/bground.png');
 }
 </style>
 
-<!-- <script language="JavaScript">
-var ls_num;
+<script>
+//百度点击统计
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?96b905de435dd81394177274a6aeb9cd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
-function test(e)
-{
-
-var x = e.clientX;  
-var y = e.clientY ; 
-ls_num = x + y;
-
-if (ls_num > 1900) // 鼠标没有动静了
-{
-
-window.location.href  = './second.html'; // 'http://www.jb51.net/article/25403
-}
-
-}
-</script> -->
 <script type="text/javascript" src="js/guard.js"></script>
 </head>
 <body oncontextmenu="window.event.returnvalue=false">
