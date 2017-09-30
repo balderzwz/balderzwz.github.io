@@ -1,53 +1,32 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<!-- <meta http-equiv="refresh" content="2; url=http://SC.CHINAZ.com"> -->
-<title>星星点灯 - 口诀</title>
+<link rel="icon" href="sitelogo.png" type="image/x-icon"/> 
+<title>Scrat_Tel(Homepage) - Official </title>
+<link href="css/firstpage_rightside.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript"> 
+ // 防止非站内打开 
+    var refurl=document.referrer; 
 
-<style>
-html,body {
-	margin:0;
-	overflow:hidden;
-	width:100%;
-	height:100%;
-	cursor:none;
-	background:black;
-	background:linear-gradient(to bottom,#000000 0%,#5788fe 100%);
-}
-.filter {
-	width:100%;
-	height:100%;
-	position:absolute;
-	top:0;
-	left:0;
-	background:#fe5757;
-	animation:colorChange 30s ease-in-out infinite;
-	animation-fill-mode:both;
-	mix-blend-mode:overlay;
-}
-@keyframes colorChange {
-	0%,100% {
-	opacity:0;
-}
-50% {
-	opacity:.9;
-}
-}.landscape {
-	position:absolute;
-	bottom:0px;
-	left:0;
-	width:100%;
-	height:100%;
-	/*background-image:url(https://openclipart.org/image/2400px/svg_to_png/250847/Trees-Landscape-Silhouette.png);
-	*/
-background-image:url('./pic/bground.png');
-	background-size:1000px 250px;
-	background-repeat:repeat-x;
-	background-position:center bottom;
-}
-</style>
+    if(refurl.indexOf("www.jobshelp.cn")>-1){ 
+        
+     }
+	else {
+	
+	location.replace("http://www.jobshelp.cn"); 
+    }     
+</script>
 
+<script language="JavaScript"> 
+//防止页面后退
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+</script> 
 <script>
 //百度点击统计
 var _hmt = _hmt || [];
@@ -59,209 +38,378 @@ var _hmt = _hmt || [];
 })();
 </script>
 
-<script type="text/javascript" src="js/guard.js"></script>
-</head>
-<body oncontextmenu="window.event.returnvalue=false">
-
-<div class="landscape" ></div>
-<div class="filter" onmousemove="test(event)"></div>
-<!--  <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="50" scrolldelay="200" behavior="slide" loop="1">&nbsp;
-      <a href="http://CHINAZ.com"> -->
-<canvas id="canvas" ></canvas>
 
 <script>
-function Star(id, x, y){
-	this.id = id;
-	this.x = x;
-	this.y = y;
-	this.r = Math.floor(Math.random()*2)+1;
-	var alpha = (Math.floor(Math.random()*10)+1)/10/2;
-	this.color = "rgba(255,255,255,"+alpha+")";
-}
-
-Star.prototype.draw = function() {
-	ctx.fillStyle = this.color;
-	ctx.shadowBlur = this.r * 2;
-	ctx.beginPath();
-	ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
-	ctx.closePath();
-	ctx.fill();
-}
-
-Star.prototype.move = function() {
-	this.y -= .15;
-	if (this.y <= -10) this.y = HEIGHT + 10;
-	this.draw();
-}
-
-Star.prototype.die = function() {
-    stars[this.id] = null;
-    delete stars[this.id];
-}
-
-
-function Dot(id, x, y, r) {
-	this.id = id;
-	this.x = x;
-	this.y = y;
-	this.r = Math.floor(Math.random()*5)+1;
-	this.maxLinks = 2;
-	this.speed = .5;
-	this.a = .5;
-	this.aReduction = .005;
-	this.color = "rgba(255,255,255,"+this.a+")";
-	this.linkColor = "rgba(255,255,255,"+this.a/4+")";
-
-	this.dir = Math.floor(Math.random()*140)+200;
-}
-
-Dot.prototype.draw = function() {
-	ctx.fillStyle = this.color;
-	ctx.shadowBlur = this.r * 2;
-	ctx.beginPath();
-	ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
-	ctx.closePath();
-	ctx.fill();
-}
-
-Dot.prototype.link = function() {
-	if (this.id == 0) return;
-	var previousDot1 = getPreviousDot(this.id, 1);
-	var previousDot2 = getPreviousDot(this.id, 2);
-	var previousDot3 = getPreviousDot(this.id, 3);
-	if (!previousDot1) return;
-	ctx.strokeStyle = this.linkColor;
-	ctx.moveTo(previousDot1.x, previousDot1.y);
-	ctx.beginPath();
-	ctx.lineTo(this.x, this.y);
-	if (previousDot2 != false) ctx.lineTo(previousDot2.x, previousDot2.y);
-	if (previousDot3 != false) ctx.lineTo(previousDot3.x, previousDot3.y);
-	ctx.stroke();
-	ctx.closePath();
-}
-
-function getPreviousDot(id, stepback) {
-	if (id == 0 || id - stepback < 0) return false;
-	if (typeof dots[id - stepback] != "undefined") return dots[id - stepback];
-	else return false;//getPreviousDot(id - stepback);
-}
-
-Dot.prototype.move = function() {
-	this.a -= this.aReduction;
-	if (this.a <= 0) {
-		this.die();
-		return
-	}
-	this.color = "rgba(255,255,255,"+this.a+")";
-	this.linkColor = "rgba(255,255,255,"+this.a/4+")";
-	this.x = this.x + Math.cos(degToRad(this.dir))*this.speed,
-	this.y = this.y + Math.sin(degToRad(this.dir))*this.speed;
-
-	this.draw();
-	this.link();
-}
-
-Dot.prototype.die = function() {
-    dots[this.id] = null;
-    delete dots[this.id];
-}
-
-
-var canvas  = document.getElementById('canvas'),
-	ctx = canvas.getContext('2d'),
-	WIDTH,
-	HEIGHT,
-	mouseMoving = false,
-	mouseMoveChecker,
-	mouseX,
-	mouseY,
-	stars = [],
-	initStarsPopulation = 80,
-	dots = [],
-	dotsMinDist = 2,
-	maxDistFromCursor = 50;
-
-setCanvasSize();
-init();
-
-function setCanvasSize() {
-	WIDTH = document.documentElement.clientWidth,
-    HEIGHT = document.documentElement.clientHeight;                      
-
-	canvas.setAttribute("width", WIDTH);
-	canvas.setAttribute("height", HEIGHT);
-}
-
-function init() {
-	ctx.strokeStyle = "white";
-	ctx.shadowColor = "white";
-	for (var i = 0; i < initStarsPopulation; i++) {
-		stars[i] = new Star(i, Math.floor(Math.random()*WIDTH), Math.floor(Math.random()*HEIGHT));
-		//stars[i].draw();
-	}
-	ctx.shadowBlur = 0;
-	animate();
-}
-
-function animate() {
-    ctx.clearRect(0, 0, WIDTH, HEIGHT);
-
-    for (var i in stars) {
-    	stars[i].move();
-    }
-    for (var i in dots) {
-    	dots[i].move();
-    }
-    drawIfMouseMoving();
-    requestAnimationFrame(animate);
-}
-
-window.onmousemove = function(e){
-	mouseMoving = true;
-	mouseX = e.clientX;
-	mouseY = e.clientY;
-	clearInterval(mouseMoveChecker);
-	mouseMoveChecker = setTimeout(function() {
-		mouseMoving = false;
-	}, 100);
-}
-
-
-function drawIfMouseMoving(){
-	if (!mouseMoving) return;
-
-	if (dots.length == 0) {
-		dots[0] = new Dot(0, mouseX, mouseY);
-		dots[0].draw();
-		return;
-	}
-
-	var previousDot = getPreviousDot(dots.length, 1);
-	var prevX = previousDot.x; 
-	var prevY = previousDot.y; 
-
-	var diffX = Math.abs(prevX - mouseX);
-	var diffY = Math.abs(prevY - mouseY);
-
-	if (diffX < dotsMinDist || diffY < dotsMinDist) return;
-
-	var xVariation = Math.random() > .5 ? -1 : 1;
-	xVariation = xVariation*Math.floor(Math.random()*maxDistFromCursor)+1;
-	var yVariation = Math.random() > .5 ? -1 : 1;
-	yVariation = yVariation*Math.floor(Math.random()*maxDistFromCursor)+1;
-	dots[dots.length] = new Dot(dots.length, mouseX+xVariation, mouseY+yVariation);
-	dots[dots.length-1].draw();
-	dots[dots.length-1].link();
-}
-//setInterval(drawIfMouseMoving, 17);
-
-function degToRad(deg) {
-	return deg * (Math.PI / 180);
-}
+//首页右侧边栏联系信息
+$(function() {
+	// 悬浮窗口
+	$(".yb_conct").hover(function() {
+		$(".yb_conct").css("right", "5px");
+		$(".yb_bar .yb_ercode").css('height', '200px');
+	}, function() {
+		$(".yb_conct").css("right", "-127px");
+		$(".yb_bar .yb_ercode").css('height', '53px');
+	});
+	// 返回顶部
+	$(".yb_top").click(function() {
+		$("html,body").animate({
+			'scrollTop': '0px'
+		}, 300)
+	});
+});
 </script>
 
+<meta charset="utf-8">
+<link rel="icon" href="pic/sitelogo.png" type="image/x-icon"/> 
+<title>Scrat_Tel(Homepage) - Official </title>
 
-<<<<<<< HEAD
+
+<style>
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  font-size: 100%;
+  font-family: "Noto Sans", Verdana;
+  color: #eee9dc;
+  background: #48b379;
+}
+/*-------
+*  left nav begin
+*-----*/
+	.w {
+			width:1200px;
+			margin:0 auto;
+		}
+		a {
+			text-decoration:inherit;
+		}
+		a,li {
+			list-style:none;
+		}
+		.cf:before,.cf:after,.clearfix:before,.clearfix:after {
+			content:"";
+			display:table;
+		}
+		.cf:after,.clearfix:after {
+			clear:both;
+		}
+		.cf,.clearfix {
+			clear:both;
+			*zoom:1;
+		}
+		/*导航条*/
+		#nav {
+			width:100%;
+			min-width:1200px;
+			height:30px;
+//			background:#000000;
+			margin-top:100px;
+		}
+		#nav ul li {
+			float:left;
+		}
+		#nav ul li:first-child {
+			margin-left:17%;
+		}
+		#nav ul li a {
+			font-size:16px;
+			color:#fff;
+			line-height:30px;
+			padding:0 35px;
+			display:inline-block;
+		}
+		#nav ul li a:hover {
+			background:#FF7F00;
+//			color:#00a1ea;
+			border-radius:1.5em;
+		}
+		#nav ul li.active a {
+//			background:#fff000;
+			color: #ffffff;
+		}
+		/*banner上面浮层*/
+		.cat_wrap {
+			box-shadow:1px 1px 2px #bfbcbc;
+			box-shadow:0 -4px 8px 0 rgba(7,17,27,.1),0 4px 8px 0 rgba(7,17,27,.1);
+			background:#fff;
+			width:180px;
+			position:absolute;
+			z-index:999;
+			top:-30px;
+		}
+		.cat_wrap .cat_title {
+			width:192px;
+			height:50px;
+			line-height:50px;
+			font-size:16px;
+			background:url(pic/juxing.png) no-repeat;
+			margin-left:-6px;
+			margin-top:-15px;
+			background-size:100%;
+			color:#fff;
+			text-align:center;
+		}
+		.cat_wrap .cat_header {
+			min-height:450px;
+		}
+		.cat_wrap .cat_list div {
+			background:#fff;
+			border-left:3px solid transparent;
+		}
+		.cat_wrap .cat_list div li {
+			float:left;
+			color:#323232;
+			font-size:14px;
+			margin:7px 0px;
+		}
+		.cat_wrap .cat_list div li:first-child {
+			margin-left:15px;
+			margin-right:10px;
+		}
+		.cat_wrap .cat_list {
+			cursor:pointer;
+		}
+		.cat_wrap .cat_list div.active {
+			width:177px;
+			padding-left:1px;
+			position:relative;
+			z-index:999;
+			border-left:3px solid #00a1ea;
+			border-top:1px solid #00a1ea;
+			border-bottom:1px solid #00a1ea;
+			border-right:none;
+		}
+		/*banner浮层滑动显示弹框*/
+				.cat_subcont {
+			display:none;
+		}
+		.cat_subcont.active {
+			display:block;
+		}
+		.cat_subcont .cat_sublist {
+			position:absolute;
+			z-index:998;
+			top:30px;
+			left:180px;
+			padding-top:5px;
+			min-height:394px;
+			width:740px;
+			background:#fff;
+			border-top:1px solid #f9f9f9;
+			border-left:1px solid #00a1ea;
+			border-bottom:1px solid #00a1ea;
+			border-right:1px solid #00a1ea;
+		}
+		.cat_subcont .cat_sublist .fore1 {
+			width:740px;
+		}
+		.cat_subcont .cat_sublist .fore1 .fore_list {
+			padding:0 20px;
+		}
+		.cat_subcont .cat_sublist .fore1 .fore_list h3 {
+			padding:5px;
+			border-bottom:1px solid #d3d3d3;
+		}
+		.cat_subcont .cat_sublist .fore1 .fore_list h3 a {
+			font-size:16px;
+			color:#00a1ea;
+		}
+		.cat_subcont .cat_sublist .fore1 .fore_list li {
+			float:left;
+			font-size:12px;
+			color:#7d7d7d;
+			padding:20px; // 5px -> 20px
+		}
+		.cat_subcont .cat_sublist .fore1 .fore_list li a {
+			font-size:12px;
+		  color:#333;
+		}
+		.cat_subcont .cat_sublist .fore1 .fore_list li a:hover {
+			color:#FF7F00;
+			font-weight:bold;
+			text-decoration:underline;
+		}
+	
+/*-------
+* left nav end
+*-----*/
+  
+  
+h2 {
+  margin: 3em 0 0 0;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------
+ * timeline
+ * ------------------------------------- */
+#timeline {
+  list-style: none;
+  margin: 50px 0 30px 420px;
+  padding-left: 30px;
+  border-left: 8px solid #eee9dc;
+}
+#timeline li {
+  margin: 40px 0;
+  position: relative;
+}
+#timeline p {
+  margin: 0 0 15px;
+}
+
+.date {
+  margin-top: -10px;
+  top: 50%;
+  left: -158px;
+  font-size: 0.95em;
+  line-height: 20px;
+  position: absolute;
+}
+
+.circle {
+  margin-top: -10px;
+  top: 50%;
+  left: -44px;
+  width: 10px;
+  height: 10px;
+  background: #48b379;
+  border: 5px solid #eee9dc;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+
+.content {
+  max-height: 20px;
+  padding: 50px 30px 0;
+  border-color: transparent;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 1.5em;
+  position: relative;
+}
+.content:before, .content:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  position: absolute;
+  pointer-events: none;
+  right: 100%;
+}
+.content:before {
+  border-right-color: inherit;
+  border-width: 20px;
+  top: 50%;
+  margin-top: -20px;
+}
+.content:after {
+  border-right-color: #48b379;
+  border-width: 17px;
+  top: 50%;
+  margin-top: -17px;
+}
+.content p {
+  max-height: 0;
+  color: transparent;
+  text-align: justify;
+  word-break: break-word;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+label {
+  font-size: 1.3em;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  top: 20px;
+  transition: transform 0.2s linear;
+}
+
+.radio {
+  display: none;
+}
+
+.radio:checked + .relative label {
+  cursor: auto;
+  transform: translateX(42px);
+}
+.radio:checked + .relative .circle {
+  background: #f98262;
+}
+.radio:checked ~ .content {
+  max-height: 180px;
+  border-color: #eee9dc;
+  margin-right: 20px;
+  transform: translateX(20px);
+  transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
+}
+.radio:checked ~ .content p {
+  max-height: 200px;
+  color: #eee9dc;
+  transition: color 0.3s linear 0.3s;
+}
+
+/* -------------------------------------
+ * mobile phones (vertical version only)
+ * ------------------------------------- */
+@media screen and (max-width: 767px) {
+  #timeline {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+  #timeline li {
+    margin: 70px 0;
+  }
+
+  label {
+    width: 85%;
+    font-size: 1.1em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    transform: translateX(18px);
+  }
+
+  .content {
+    padding-top: 45px;
+    border-color: #eee9dc;
+  }
+  .content:before, .content:after {
+    border: solid transparent;
+    bottom: 100%;
+  }
+  .content:before {
+    border-bottom-color: inherit;
+    border-width: 17px;
+    top: -16px;
+    left: 50px;
+    margin-left: -17px;
+  }
+  .content:after {
+    border-bottom-color: #48b379;
+    border-width: 20px;
+    top: -20px;
+    left: 50px;
+    margin-left: -20px;
+  }
+  .content p {
+    font-size: 0.9em;
+    line-height: 3.4;
+  }
+
+  .circle, .date {
+    display: none;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-----
@@ -295,7 +443,7 @@ function degToRad(deg) {
 <div id="nav">
         <ul class="w">
             <li class="active"><a href="#">Homepage</a></li>
-            <li><a href="http://www.jobshelp.cn/cv/" target="_blank">Personal Profile</a></li>
+            <li><a href="#">Personal Profile</a></li>
             <li><a href="#">Online Message</a></li>
  <!---             
             <li><a href="#">学习方法</a></li>
@@ -574,11 +722,9 @@ function degToRad(deg) {
                         <div class="fore_list">
                             <h3><a href="javascript:void(0);">动手类</a></h3>
                             <ul class="clearfix">
-                                <li><a href="http://www.jobshelp.cn/painting/" target="_blank">绘画</a></li>
+                                <li><a href="http://www.jobshelp.cn/paint/" target="_blank">绘画</a></li>
                                 <li><a href="http://www.jobshelp.cn/shufa/" target="_blank">书法</a></li>
                                 <li><a href="javascript:void(0);">摄影</a></li>
-                                 <li>木工</li>
-                                 <li>陶塑</li>
                                 
                             </ul>
                         </div>
@@ -777,8 +923,6 @@ function degToRad(deg) {
 <p>人生就是一段修行，不断开悟、体验和优化的过程</p>
 <p>源自：<a href="http://cn.bing.com/images/search?q=Scrat&FORM=HDRSC2" target="_blank">Scrat Tel</a></p>
 </div>
-=======
->>>>>>> 3e672fa3b0f8b1a56b1eefd42d811dcc6f9bb86d
 </body>
 </html>
 
