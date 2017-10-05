@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -61,12 +61,13 @@ var _hmt = _hmt || [];
 
 <script type="text/javascript" src="js/guard.js"></script>
 </head>
+
+
 <body oncontextmenu="window.event.returnvalue=false">
 
 <div class="landscape" ></div>
 <div class="filter" onmousemove="test(event)"></div>
-<!--  <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="50" scrolldelay="200" behavior="slide" loop="1">&nbsp;
-      <a href="http://CHINAZ.com"> -->
+
 <canvas id="canvas" ></canvas>
 
 <script>
@@ -78,7 +79,6 @@ function Star(id, x, y){
 	var alpha = (Math.floor(Math.random()*10)+1)/10/2;
 	this.color = "rgba(255,255,255,"+alpha+")";
 }
-
 Star.prototype.draw = function() {
 	ctx.fillStyle = this.color;
 	ctx.shadowBlur = this.r * 2;
@@ -87,19 +87,15 @@ Star.prototype.draw = function() {
 	ctx.closePath();
 	ctx.fill();
 }
-
 Star.prototype.move = function() {
 	this.y -= .15;
 	if (this.y <= -10) this.y = HEIGHT + 10;
 	this.draw();
 }
-
 Star.prototype.die = function() {
     stars[this.id] = null;
     delete stars[this.id];
 }
-
-
 function Dot(id, x, y, r) {
 	this.id = id;
 	this.x = x;
@@ -111,10 +107,8 @@ function Dot(id, x, y, r) {
 	this.aReduction = .005;
 	this.color = "rgba(255,255,255,"+this.a+")";
 	this.linkColor = "rgba(255,255,255,"+this.a/4+")";
-
 	this.dir = Math.floor(Math.random()*140)+200;
 }
-
 Dot.prototype.draw = function() {
 	ctx.fillStyle = this.color;
 	ctx.shadowBlur = this.r * 2;
@@ -123,7 +117,6 @@ Dot.prototype.draw = function() {
 	ctx.closePath();
 	ctx.fill();
 }
-
 Dot.prototype.link = function() {
 	if (this.id == 0) return;
 	var previousDot1 = getPreviousDot(this.id, 1);
@@ -139,13 +132,11 @@ Dot.prototype.link = function() {
 	ctx.stroke();
 	ctx.closePath();
 }
-
 function getPreviousDot(id, stepback) {
 	if (id == 0 || id - stepback < 0) return false;
 	if (typeof dots[id - stepback] != "undefined") return dots[id - stepback];
 	else return false;//getPreviousDot(id - stepback);
 }
-
 Dot.prototype.move = function() {
 	this.a -= this.aReduction;
 	if (this.a <= 0) {
@@ -156,17 +147,13 @@ Dot.prototype.move = function() {
 	this.linkColor = "rgba(255,255,255,"+this.a/4+")";
 	this.x = this.x + Math.cos(degToRad(this.dir))*this.speed,
 	this.y = this.y + Math.sin(degToRad(this.dir))*this.speed;
-
 	this.draw();
 	this.link();
 }
-
 Dot.prototype.die = function() {
     dots[this.id] = null;
     delete dots[this.id];
 }
-
-
 var canvas  = document.getElementById('canvas'),
 	ctx = canvas.getContext('2d'),
 	WIDTH,
@@ -180,18 +167,14 @@ var canvas  = document.getElementById('canvas'),
 	dots = [],
 	dotsMinDist = 2,
 	maxDistFromCursor = 50;
-
 setCanvasSize();
 init();
-
 function setCanvasSize() {
 	WIDTH = document.documentElement.clientWidth,
     HEIGHT = document.documentElement.clientHeight;                      
-
 	canvas.setAttribute("width", WIDTH);
 	canvas.setAttribute("height", HEIGHT);
 }
-
 function init() {
 	ctx.strokeStyle = "white";
 	ctx.shadowColor = "white";
@@ -202,10 +185,8 @@ function init() {
 	ctx.shadowBlur = 0;
 	animate();
 }
-
 function animate() {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
-
     for (var i in stars) {
     	stars[i].move();
     }
@@ -215,7 +196,6 @@ function animate() {
     drawIfMouseMoving();
     requestAnimationFrame(animate);
 }
-
 window.onmousemove = function(e){
 	mouseMoving = true;
 	mouseX = e.clientX;
@@ -225,26 +205,19 @@ window.onmousemove = function(e){
 		mouseMoving = false;
 	}, 100);
 }
-
-
 function drawIfMouseMoving(){
 	if (!mouseMoving) return;
-
 	if (dots.length == 0) {
 		dots[0] = new Dot(0, mouseX, mouseY);
 		dots[0].draw();
 		return;
 	}
-
 	var previousDot = getPreviousDot(dots.length, 1);
 	var prevX = previousDot.x; 
 	var prevY = previousDot.y; 
-
 	var diffX = Math.abs(prevX - mouseX);
 	var diffY = Math.abs(prevY - mouseY);
-
 	if (diffX < dotsMinDist || diffY < dotsMinDist) return;
-
 	var xVariation = Math.random() > .5 ? -1 : 1;
 	xVariation = xVariation*Math.floor(Math.random()*maxDistFromCursor)+1;
 	var yVariation = Math.random() > .5 ? -1 : 1;
@@ -254,531 +227,14 @@ function drawIfMouseMoving(){
 	dots[dots.length-1].link();
 }
 //setInterval(drawIfMouseMoving, 17);
-
 function degToRad(deg) {
 	return deg * (Math.PI / 180);
 }
 </script>
 
 
-<<<<<<< HEAD
-</head>
-<body>
-<!-----
- *  personal contact begin
-//----->
-<div class="yb_conct">
-  <div class="yb_bar">
-    <ul>
-      <li class="yb_top">Back to top</li>
-      <li class="yb_phone" ><a href="mailto:jasonzhang100@126.com">Jason Cheung</a></li>
-      <li class="yb_QQ">
-<!--      	<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=954502368&amp;site=qq&amp;menu=yes&amp;from=message&amp;isappinstalled=0" title="即刻发送您的需求">在线咨询</a>
--->
-<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=343142472&site=qq&menu=yes&from=message&isappinstalled=0" title="Q me">Q me</a>
-      </li>
-      <li class="yb_ercode" style="height:53px;">Scan Wechat <br>
-        <img class="hd_qr" src="pic/weixin.png" width="125" alt="关注微信"> </li>
-    </ul>
-  </div>
-</div>
-<!-----
- *  personal contact end
-//----->
 
-<h2>Personal Matters</h2>
 
-<p>This is Jason Cheung private field, welcome if you found</p>
-<!-----
- *  Nav begin
-//----->
-<div id="nav">
-        <ul class="w">
-            <li class="active"><a href="#">Homepage</a></li>
-            <li><a href="http://www.jobshelp.cn/cv/" target="_blank">Personal Profile</a></li>
-            <li><a href="#">Online Message</a></li>
- <!---             
-            <li><a href="#">学习方法</a></li>
-            <li><a href="#">名言名记</a></li>
-            <li><a href="#"></a></li>
--->
-        </ul>
-    </div>
-	<div class="w clearfix" style="position:relative;">
-        <!-- banner上面浮层 -->
-        <div class="cat_wrap">
-            <div class="cat_header">
-                <h3 class="cat_title">Concerns</h3>
-                <div class="cat_list">
-                    <div class="float for1">
-                        <ul class="clearfix">
-                            <li>计算机技术</li>
-<!---		            <li>大数据</li>  -->
-                        </ul>
-                    </div>
-                    <div class="float for2">
-                        <ul class="clearfix">
-                            <li>营销管理学</li>
- <!---                           <li>架构设计</li> -->
-                        </ul>
-                    </div>
-                    <div class="float for3">
-                        <ul class="clearfix">
-                            <li>心理学</li>
-   <!---                           <li>产品创新</li> -->
-                        </ul>
-                    </div> 
-                    <div class="float for4">
-                        <ul class="clearfix">
-                            <li>经济学</li>
-    <!---                          <li>数据库</li> -->
-                        </ul>
-                    </div> 
-                    <div class="float for5">
-                        <ul class="clearfix">
-                            <li>财务管理</li>
-       <!---                       <li>编辑语言</li> -->
-                        </ul>
-                    </div> 
-                    <div class="float for6">
-                        <ul class="clearfix">
-                            <li>户外</li>
-       <!---                       <li>办公技能/项目管理</li> -->
-                        </ul>
-                    </div> 
-                    <div class="float for7">
-                        <ul class="clearfix">
-                            <li>养殖</li>
-     <!---                       <li>项目管理/管理技能</li> -->
-                        </ul>
-                    </div>
-                    <div class="float for8">
-                        <ul class="clearfix">
-                            <li >艺术</li>
-      <!---                        <li>领导力</li> -->
-                        </ul>
-                    </div>
-                    <div class="float for9">
-                        <ul class="clearfix">
-                            <li>健康</li>
-       <!---                     <li>其他</li> -->
-                        </ul>
-                    </div> 
-                    <div class="float for9">
-                        <ul class="clearfix">
-                            <li>生活乐趣</li>
-         <!---                     <li>其他</li> -->
-                        </ul>
-                    </div> 
-                </div>
-            </div>
-            <!-- banner浮层滑动显示弹框 -->
-            <div class="cat_subcont">
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">开源技术</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">Python</a></li>
-                                <li><a href="javascript:void(0);">Javascript</a></li>
-                                <li><a href="javascript:void(0);">CSS</a></li>
-                                <li><a href="javascript:void(0);">HTML5</a></li>
-
-                            </ul>
-                        </div>
-			 <div class="fore_list">
-                            <h3><a href="javascript:void(0);">工具必备</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">Office</a></li>
-                                <li><a href="javascript:void(0);">Photoshop</a></li>
-                                <li><a href="javascript:void(0);">Axure</a></li>
-
-                            </ul>
-                        </div>
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">企业应用</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">SAP</a></li>
-                                <li><a href="javascript:void(0);">CRM</a></li>
-                                <li><a href="javascript:void(0);">OA</a></li>
-                                <li><a href="javascript:void(0);">SCM</a></li>
-
-                            </ul>
-                        </div>
-
-	               <div class="fore_list">
-                            <h3><a href="javascript:void(0);">新趋势</a></h3>
-                            <ul class="clearfix">
-                                <li>数据模型</li>
-                                <li>机器学习</li>
-                                <li ><a href="http://www.jobshelp.cn/vrshow/" target="_blank">VR/AR/MR</a></li>
-                                <li>3D打印</li>
-                                <li>IOT场景</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">营销学</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">传统营销</a></li>
-                                <li><a href="javascript:void(0);">互联网营销</a></li>
-                            </ul>
-                        </div>
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">管理学</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">项目管理</a></li>
-                                <li><a href="javascript:void(0);">公司管理</a></li>
-                                <li><a href="javascript:void(0);">个人管理</a></li>
-                                <li><a href="javascript:void(0);">团队管理</a></li>
-                            </ul>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">工艺心理学</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">资源推荐</a></li>
-                                <li><a href="javascript:void(0);">案例点评</a></li>
-
-                            </ul>
-                        </div>
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">大众心理学</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">资源推荐</a></li>
-                                <li><a href="javascript:void(0);">案例点评</a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">人人都需了解的经济学</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">国与国关系的影响</a></li>
-                                <li><a href="javascript:void(0);">国与实体关系的影响</a></li>
-                                <li><a href="javascript:void(0);">实体与人民关系的影响</a></li>
-                            </ul>
-                        </div>
-                    
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">新融合</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">供应链金融(2B)</a></li>
-                                <li><a href="javascript:void(0);">消费金融(2C)</a></li>
-                                <li><a href="javascript:void(0);">数据的力量</a></li>
-                               
-                            </ul>
-                        </div> 
-                                <div class="fore_list">
-                            <h3><a href="javascript:void(0);">实战分享</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">股市</a></li>
-                                <li><a href="javascript:void(0);">汇市</a></li>
-                                <li><a href="javascript:void(0);">房市</a></li>
-                                <li>金市</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">业务知识</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">税务知识</a></li>
-                                <li><a href="javascript:void(0);">财务管理</a></li>
-                                <li><a href="javascript:void(0);">内控管理</a></li>
-                                <li><a href="javascript:void(0);">审计</a></li>
-                            </ul>
-                        </div>
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">系统支持</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">系统设计</a></li>
-                                <li><a href="javascript:void(0);">新趋势</a></li>
-                              
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">户外必备</a></h3>
-                            <ul class="clearfix">
-                                <li>单车</li>
-                                <li><a href="javascript:void(0);">远足</a></li>
-                                <li><a href="javascript:void(0);">钓鱼</a></li>
-                                <li><a href="javascript:void(0);">自驾</a></li>
-
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">花卉乔木</a></h3>
-                            <ul class="clearfix">
-                                
-                                <li><a href="javascript:void(0);">花卉类</a></li>
-                                <li>乔木类</li>
-
-                            </ul>
-                        </div>
-		       <div class="fore_list">
-                            <h3><a href="javascript:void(0);">经济植物</a></h3>
-                            <ul class="clearfix">
-                                <li>当期供需分析</li>
-                                <li>高价值品类</li>
-                            </ul>
-                        </div>
-			
-			<div class="fore_list">
-                            <h3><a href="javascript:void(0);">经济动物</a></h3>
-                            <ul class="clearfix">
-                                <li>禽类</li>
-                                <li>水产</li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">动手类</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="http://www.jobshelp.cn/painting/" target="_blank">绘画</a></li>
-                                <li><a href="http://www.jobshelp.cn/shufa/" target="_blank">书法</a></li>
-                                <li><a href="javascript:void(0);">摄影</a></li>
-                                 <li>木工</li>
-                                 <li>陶塑</li>
-                                
-                            </ul>
-                        </div>
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">动嘴类</a></h3>
-                            <ul class="clearfix">
-                                <li>笛子</li>
-                                <li>埙</li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">食疗</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">有益食物及搭配</a></li>
-                                <li><a href="javascript:void(0);">打假</a></li>
-                            </ul>
-                        </div>
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">运动</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">注意事项</a></li>
-                                <li><a href="javascript:void(0);">心得分享</a></li>
-
-                            </ul>
-                        </div>
-			<div class="fore_list">
-                            <h3><a href="javascript:void(0);">医药</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">常见状况处理</a></li>
-                                <li><a href="javascript:void(0);">医药必备</a></li>
-
-                            </ul>
-                        </div>		     
-			<div class="fore_list">
-                            <h3><a href="javascript:void(0);">辅助工具</a></h3>
-                            <ul class="clearfix">
-                                <li>针灸</li>
-                                <li><a href="javascript:void(0);">工具</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="cat_sublist">
-                    <!-- 浮层左边列表 -->
-                    <div class="fore1">
-                        <div class="fore_list">
-                            <h3><a href="javascript:void(0);">小快乐大幸福</a></h3>
-                            <ul class="clearfix">
-                                <li><a href="javascript:void(0);">搜藏</a></li>
-				<li><a href="javascript:void(0);">学习</a></li>
-                                <li><a href="javascript:void(0);">体验</a></li>
-                                <li><a href="javascript:void(0);">分享</a></li>
-                                <li><a href="javascript:void(0);">给予</a></li>
-                                <li><a href="javascript:void(0);">信仰</a></li>
-                            </ul>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
 	
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript">
-    	//banner左侧内容栏
-		$(function(){
-		    var thisTime;
-		    //鼠标离开左侧内容栏
-		    $('.cat_wrap .cat_list .float').mouseleave(function(even){
-		        thisTime = setTimeout(thisMouseOut,1000);
-		    });
-		    //鼠标点击左侧内容栏   滑动出弹层
-		    $('.cat_wrap .cat_list .float').mouseenter(function(){
-		        $(this).addClass("active").siblings().removeClass("active");
-		        clearTimeout(thisTime);
-		        var thisUB = $('.cat_wrap .cat_list .float').index($(this));
-		        if($.trim($('.cat_subcont .cat_sublist').eq(thisUB).html()) != ""){
-		            $('.cat_subcont').addClass('active');
-		            $('.cat_sublist').hide();
-		            $('.cat_sublist').eq(thisUB).show();
-		        }else{
-		            $('.cat_subcont').removeClass('active');
-		        }
-		    });
-		    //函数——执行鼠标离开左侧内容栏的动作
-		    function thisMouseOut(){
-		        $('.cat_subcont').removeClass('active');
-		        $('.cat_wrap .cat_list .float').removeClass('active');
-		    }
-		    $('.cat_subcont').mouseenter(function(){
-		        clearTimeout(thisTime);
-		        $('.cat_subcont').addClass('active');
-		    });
-		    $('.cat_subcont').mouseleave(function(){
-		        $('.cat_subcont').removeClass('active');
-		        $('.cat_wrap .cat_list .float').removeClass('active');
-		    });
-		});     
-  </script>
-<!-----
- *  Nav end
-//----->
-  <ul id='timeline'>
-  <li class='work'>
-    <input class='radio' id='work5' name='works' type='radio' checked>
-    <div class="relative">
-      <label for='work5'>Start-up Career</label>
-      <span class='date'>15 Jun 2017</span>
-      <span class='circle'></span>
-    </div>
-    <div class='content'>
-      <p>
-        这一天和前同事Jerry三五杯黄酒下肚，就决定共同创业。这十来年混咨询，做方案、懂产品；与国内、外客户都打过交道；会专业，懂人性，知套路；内心渴望做些事。公司Location @南京，公司业务涵盖IT培训，IT软件服务，信息化咨询，猎头服务以及互联网营销。
-      </p>
-    </div>
-  </li>
-  <li class='work'>
-    <input class='radio' id='work4' name='works' type='radio'>
-    <div class="relative">
-      <label for='work4'>Suning</label>
-      <span class='date'>15 May 2017</span>
-      <span class='circle'></span>
-    </div>
-    <div class='content'>
-      <p>
-        经过近两个月的休息，怀着别样的心情准备开启一段新的职业旅程，很多猎头和HR向我推荐了大的咨询公司，几乎都是base上海，南京的一家都没有.想试试的南京公司不理我，没想去的公司却隔三岔五的联系我，想想苏宁云商也不错，去看看他们互联网的玩法。
-      </p>
-    </div>
-  </li>
-  <li class='work'>
-    <input class='radio' id='work3' name='works' type='radio'>
-    <div class="relative">
-      <label for='work3'>Fenchem Bio ltd.</label>
-      <span class='date'>10 Mar 2014</span>
-      <span class='circle'></span>
-    </div>
-    <div class='content'>
-      <p>
-        如果说之前的公司学会了做事和高效的做事；在这认识了事情背后的手，认识到做事就是做人，职场的策略和残酷。小公司和快速发展的公司好处就是让你认识了什么叫原生态.感谢Fenchem,在这三年，我拿到了驾照，学会了游泳，与相爱的人永结同好，认识了不少朋友。
-      </p>
-    </div>
-  </li>
-  <li class='work'>
-    <input class='radio' id='work2' name='works' type='radio'>
-    <div class="relative">
-      <label for='work2'>TCS</label>
-      <span class='date'>10 Jul 2012</span>
-      <span class='circle'></span>
-    </div>
-    <div class='content'>
-      <p>
-        来到上海，加入TCS，工作和住在张江这个神奇的地方，最多的是往返上海和南京之间，没事背起双肩包到上海周边的地方走走看看，西塘，乌镇，朱家角等。认识了有趣的人，体会到了‘在SAP这个圈子迟早要碰头’这句话内涵。
-      </p>
-    </div>
-  </li>
-  <li class='work'>
-    <input class='radio' id='work1' name='works' type='radio'>
-    <div class="relative">
-      <label for='work1'>IBM</label>
-      <span class='date'>26 Nov 2010</span>
-      <span class='circle'></span>
-    </div>
-    <div class='content'>
-      <p>
-        来到成都，少不入川，老不入广，我在工作的最初两年多都完成了。这里人的乐观，安逸，火锅，烤鱼和美景深深震撼了我，一个字，巴适！
-      </p>
-    </div>
-  </li>
-
-  <li class='work'>
-    <input class='radio' id='work0' name='works' type='radio'>
-    <div class="relative">
-      <label for='work0'>HK Compass(PCCW)</label>
-      <span class='date'>01 Sep 2008</span>
-      <span class='circle'></span>
-    </div>
-    <div class='content'>
-      <p>
-        怀着满心的好奇来到深圳，这真是一个人多，年轻人多和机会多的城市。8月9号来到深圳，9月1号就报到上班了。感谢John，还记得在做了一套JAVA测试题之后就是面试，香港人John用还不错的普通话问我你英语怎么样？听过SAP没有？完成电脑中计算器功能需要多久？
-      </p>
-    </div>
-  </li>
-</ul>
-
-<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
-<p>人生就是一段修行，不断开悟、体验和优化的过程</p>
-<p>源自：<a href="http://cn.bing.com/images/search?q=Scrat&FORM=HDRSC2" target="_blank">Scrat Tel</a></p>
-</div>
-=======
->>>>>>> 3e672fa3b0f8b1a56b1eefd42d811dcc6f9bb86d
 </body>
 </html>
-
